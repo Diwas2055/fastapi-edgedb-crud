@@ -26,9 +26,9 @@ class CreateUserResult(NoPydanticValidation):
 
 
 async def create_user(
-    executor: edgedb.AsyncIOExecutor,
-    *,
-    name: str,
+        executor: edgedb.AsyncIOExecutor,
+        *,
+        name: str,
 ) -> CreateUserResult:
     return await executor.query_single(
         """\

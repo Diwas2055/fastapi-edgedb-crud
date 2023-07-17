@@ -3,11 +3,12 @@ from __future__ import annotations
 import functools
 
 import edgedb
+from fastapi import FastAPI
+from starlette.middleware.cors import CORSMiddleware
+
 from app import events
 from app import users
 from config.settings import settings
-from fastapi import FastAPI
-from starlette.middleware.cors import CORSMiddleware
 
 
 async def setup_edgedb(app):

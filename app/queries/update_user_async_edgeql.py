@@ -26,10 +26,10 @@ class UpdateUserResult(NoPydanticValidation):
 
 
 async def update_user(
-    executor: edgedb.AsyncIOExecutor,
-    *,
-    current_name: str,
-    new_name: str,
+        executor: edgedb.AsyncIOExecutor,
+        *,
+        current_name: str,
+        new_name: str,
 ) -> UpdateUserResult | None:
     return await executor.query_single(
         """\

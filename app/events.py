@@ -1,8 +1,6 @@
 from __future__ import annotations
 
-import uuid
 from http import HTTPStatus
-from typing import List
 
 import edgedb
 from fastapi import APIRouter
@@ -35,8 +33,8 @@ class RequestData(BaseModel):
 
 @router.get("/events")
 async def get_events(
-    name: str = Query(None, max_length=50),
-    client: edgedb.AsyncIOClient = Depends(get_edgedb_client),
+        name: str = Query(None, max_length=50),
+        client: edgedb.AsyncIOClient = Depends(get_edgedb_client),
 ):
     if not name:
         events = await get_events_qry.get_events(client)
@@ -58,8 +56,8 @@ async def get_events(
 
 @router.post("/events", status_code=HTTPStatus.CREATED)
 async def post_event(
-    event: RequestData,
-    client: edgedb.AsyncIOClient = Depends(get_edgedb_client),
+        event: RequestData,
+        client: edgedb.AsyncIOClient = Depends(get_edgedb_client),
 ):
     try:
         created_event = await create_event_qry.create_event(
@@ -75,8 +73,8 @@ async def post_event(
             status_code=HTTPStatus.BAD_REQUEST,
             detail={
                 "error": "Invalid datetime format. "
-                "Datetime string must look like this: "
-                "'2010-12-27T23:59:59-07:00'",
+                         "Datetime string must look like this: "
+                         "'2010-12-27T23:59:59-07:00'",
             },
         )
 
@@ -96,9 +94,9 @@ async def post_event(
 
 @router.put("/events")
 async def put_event(
-    event: RequestData,
-    current_name: str,
-    client: edgedb.AsyncIOClient = Depends(get_edgedb_client),
+        event: RequestData,
+        current_name: str,
+        client: edgedb.AsyncIOClient = Depends(get_edgedb_client),
 ):
     try:
         updated_event = await update_event_qry.update_event(
@@ -115,7 +113,7 @@ async def put_event(
             status_code=HTTPStatus.BAD_REQUEST,
             detail={
                 "error": "Invalid datetime format. "
-                "Datetime string must look like this: '2010-12-27T23:59:59-07:00'",
+                         "Datetime string must look like this: '2010-12-27T23:59:59-07:00'",
             },
         )
 
@@ -141,8 +139,8 @@ async def put_event(
 
 @router.delete("/events")
 async def delete_event(
-    name: str,
-    client: edgedb.AsyncIOClient = Depends(get_edgedb_client),
+        name: str,
+        client: edgedb.AsyncIOClient = Depends(get_edgedb_client),
 ):
     deleted_event = await delete_event_qry.delete_event(client, name=name)
 

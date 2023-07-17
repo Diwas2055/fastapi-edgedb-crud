@@ -23,7 +23,7 @@ class FixtureResult(NoPydanticValidation):
 
 
 async def fixture(
-    executor: edgedb.AsyncIOExecutor,
+        executor: edgedb.AsyncIOExecutor,
 ) -> FixtureResult:
     return await executor.query_single(
         """\

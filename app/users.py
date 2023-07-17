@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 from http import HTTPStatus
-from typing import List
 
 import edgedb
 from fastapi import APIRouter
@@ -31,8 +30,8 @@ class RequestData(BaseModel):
 
 @router.get("/users")
 async def get_users(
-    name: str = Query(None, max_length=50),
-    client: edgedb.AsyncIOClient = Depends(get_edgedb_client),
+        name: str = Query(None, max_length=50),
+        client: edgedb.AsyncIOClient = Depends(get_edgedb_client),
 ):
     if not name:
         users = await get_users_qry.get_users(client)
@@ -54,8 +53,8 @@ async def get_users(
 
 @router.post("/users", status_code=HTTPStatus.CREATED)
 async def post_user(
-    user: RequestData,
-    client: edgedb.AsyncIOClient = Depends(get_edgedb_client),
+        user: RequestData,
+        client: edgedb.AsyncIOClient = Depends(get_edgedb_client),
 ):
     try:
         created_user = await create_user_qry.create_user(client, name=user.name)
@@ -74,9 +73,9 @@ async def post_user(
 
 @router.put("/users")
 async def put_user(
-    user: RequestData,
-    current_name: str,
-    client: edgedb.AsyncIOClient = Depends(get_edgedb_client),
+        user: RequestData,
+        current_name: str,
+        client: edgedb.AsyncIOClient = Depends(get_edgedb_client),
 ):
     try:
         updated_user = await update_user_qry.update_user(
@@ -105,8 +104,8 @@ async def put_user(
 
 @router.delete("/users")
 async def delete_user(
-    name: str,
-    client: edgedb.AsyncIOClient = Depends(get_edgedb_client),
+        name: str,
+        client: edgedb.AsyncIOClient = Depends(get_edgedb_client),
 ):
     try:
         deleted_user = await delete_user_qry.delete_user(

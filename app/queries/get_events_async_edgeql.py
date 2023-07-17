@@ -34,7 +34,7 @@ class GetEventsResultHost(NoPydanticValidation):
 
 
 async def get_events(
-    executor: edgedb.AsyncIOExecutor,
+        executor: edgedb.AsyncIOExecutor,
 ) -> list[GetEventsResult]:
     return await executor.query(
         """\

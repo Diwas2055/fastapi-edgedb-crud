@@ -26,9 +26,9 @@ class DeleteUserResult(NoPydanticValidation):
 
 
 async def delete_user(
-    executor: edgedb.AsyncIOExecutor,
-    *,
-    name: str,
+        executor: edgedb.AsyncIOExecutor,
+        *,
+        name: str,
 ) -> DeleteUserResult | None:
     return await executor.query_single(
         """\

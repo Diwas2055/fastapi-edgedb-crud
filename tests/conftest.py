@@ -2,8 +2,11 @@ import subprocess
 
 import edgedb
 import pytest
-from app.main import make_app
 from fastapi.testclient import TestClient
+
+from app.main import make_app
+
+
 # from config import settings
 
 

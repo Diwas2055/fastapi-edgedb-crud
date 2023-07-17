@@ -26,7 +26,7 @@ class GetUsersResult(NoPydanticValidation):
 
 
 async def get_users(
-    executor: edgedb.AsyncIOExecutor,
+        executor: edgedb.AsyncIOExecutor,
 ) -> list[GetUsersResult]:
     return await executor.query(
         """\

@@ -25,3 +25,4 @@ htmlcov/
 .coverage.*
 *,cover
 poetry.lock
+app/queries/*.py
